@@ -261,10 +261,13 @@ static u64 scramble(u64 key, int loops, perfcounter_t *cycles, perfcounter_t *la
               0x3539383937323338ull, 0x3333383732203930ull, 0x3736203339393937ull, 0x3839303437343920ull, 0x3834363020323636ull,
               0x3838323330383435ull, 0x37373620390a2032ull, 0x3533203832333236ull, 0x3334343036353935ull, 0x3120323335393530ull };
 
-    for (int i = 0; i < 25; i++)
+    for (int i = 0; i < 25; i++){
         st[i] ^= key;
+        printf("st is %lx \n", st[i]);
+    }
 
     for (int l = 0; l < loops; l++) {
+        printf("iter %d \n", l);
         keccakf(st);
         u64 tmp = st[0];
         for (int i = 0; i < 24; i++)
